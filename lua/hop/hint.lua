@@ -55,7 +55,9 @@ end
 -- M.by_word_start = M.by_searching('\\<\\w\\+')
 M.by_word_start = M.by_searching('\\w\\+')
 
-M.by_word_start_camel_case = M.by_searching([[\u\?\l\+]])
+-- M.by_word_start_camel_case = M.by_searching([[\u\?\l\+]])
+M.by_word_start_camel_case = M.by_searching([[\v(\u((\u)+|(\l)+))|(\l+)|(\d+)]])
+-- M.by_word_start_camel_case.addEnd = true
 -- M.by_word_start_camel_case = M.by_searching([[\v(<.|^$)|(.>|^$)|(\l)\zs(\u)|(_\zs.)|(#\zs.)\l*]])
 
 -- Line hint mode.
@@ -125,6 +127,12 @@ function M.mark_hints_line(hint_mode, line_nr, line, col_offset, win_width)
       col = colb + col_offset;
     }
 
+    -- if hint_mode.addEnd and b ~= (e - 1) then
+    --     hints[#hints + 1] = {
+    --         line = line_nr;
+    --         col = col + e + col_offset - 1;
+    --     }
+    -- end
     if hint_mode.oneshot then
       break
     else
