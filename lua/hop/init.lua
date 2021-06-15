@@ -57,6 +57,10 @@ local function hint_with(hint_mode, opts)
   local top_line = win_info.topline - 1
   local bot_line = win_info.botline - 1
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
+  if opts.line then
+      top_line = cursor_pos[1] - 1
+      bot_line = top_line
+  end
 
   -- NOTE: due to an (unknown yet) bug in neovim, the sign_width is not correctly reported when shifting the window
   -- view inside a non-wrap window, so we can’t rely on this; for this reason, we have to implement a weird hack that
@@ -190,6 +194,11 @@ end
 
 function M.hint_words(opts)
   hint_with(hint.by_word_start, get_command_opts(opts))
+end
+
+local opts_words_line = {line = true}
+function M.hint_words_line(opts)
+  hint_with(hint.by_word_start_camel_case, get_command_opts(opts or opts_words_line))
 end
 
 function M.hint_patterns(opts)

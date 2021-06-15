@@ -55,6 +55,9 @@ end
 -- M.by_word_start = M.by_searching('\\<\\w\\+')
 M.by_word_start = M.by_searching('\\w\\+')
 
+M.by_word_start_camel_case = M.by_searching([[\u\?\l\+]])
+-- M.by_word_start_camel_case = M.by_searching([[\v(<.|^$)|(.>|^$)|(\l)\zs(\u)|(_\zs.)|(#\zs.)\l*]])
+
 -- Line hint mode.
 --
 -- Used to tag the beginning of each lines with ihnts.

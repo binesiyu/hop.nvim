@@ -8,6 +8,9 @@ endif
 " The jump-to-word command.
 command! HopWord lua require'hop'.hint_words()
 
+" The jump-to-word command.
+command! HopWordLine lua require'hop'.hint_words_line()
+
 " The jump-to-pattern command.
 command! HopPattern lua require'hop'.hint_patterns()
 
