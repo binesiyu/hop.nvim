@@ -279,7 +279,7 @@ function M.setup(opts)
   local highlight = require'hop.highlight'
   highlight.insert_highlights()
 
-  if opts.create_hl_autocmd then
+  if M.opts.create_hl_autocmd then
     highlight.create_autocmd()
   end
 end
