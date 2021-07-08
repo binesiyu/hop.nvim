@@ -56,9 +56,10 @@ end
 
 -- Word hint mode.
 --
--- Used to tag words with hints.
--- M.by_word_start = M.by_searching('\\<\\w\\+')
-M.by_word_start = M.by_searching('\\w\\+')
+-- Used to tag words with hints, its behaviour depends on the
+-- iskeyword value.
+-- M.by_word_start = M.by_searching('\\<\\k\\+')
+M.by_word_start = M.by_searching('\\k\\+')
 
 -- M.by_word_start_camel_case = M.by_searching([[\u\?\l\+]])
 M.by_word_start_camel_case = M.by_searching([[\v(\u((\u)+|(\l)+))|(\l+)|(\d+)]])

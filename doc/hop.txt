@@ -94,7 +94,7 @@ the buffer before and after the cursor, respectively.
 `:HopWord`                                                              *:HopWord*
 `:HopWordBC`                                                          *:HopWordBC*
 `:HopWordAC`                                                          *:HopWordAC*
-    Annotate all words in the current window with key sequences. Typing a
+    Annotate all |word|s in the current window with key sequences. Typing a
     first  key will visually filter the sequences and reduce them. Continue
     typing key sequences until you reduce a sequence completely, which will
     bring your cursor at that position.
@@ -106,7 +106,8 @@ the buffer before and after the cursor, respectively.
 `:HopPatternAC`                                                    *:HopPatternAC*
     Ask the user for a pattern and hint the document with it.
 
-    This is akin to calling the |hop.hint_patterns| Lua function.
+    This is akin to calling the |hop.hint_patterns| Lua function
+    with no explicit pattern.
 
 `:HopChar1`                                                            *:HopChar1*
 `:HopChar1BC`                                                        *:HopChar1BC*
@@ -129,9 +130,9 @@ the buffer before and after the cursor, respectively.
 
     This is akin to calling the |hop.hint_lines| Lua function.
 
-`:HopLineStart`                                                         *:HopLine*
-`:HopLineStartBC`                                                     *:HopLineBC*
-`:HopLineStartAC`                                                     *:HopLineAC*
+`:HopLineStart`                                                    *:HopLineStart*
+`:HopLineStartBC`                                                *:HopLineStartBC*
+`:HopLineStartAC`                                                *:HopLineStartAC*
     Like `HopLine` but skips leading whitespace on every line.
     Blank lines are skipped over.
 
@@ -181,12 +182,13 @@ Most of the functions and values you need to know about are in `hop`.
     Arguments:~
         {opts}  Hop options.
 
-`hop.hint_patterns(`{opts}`)`                                    *hop.hint_patterns*
-    Annotate all patterns in the current window with key sequences after
-    having prompted the user for the pattern to search.
+`hop.hint_patterns(`{opts}`,` {pattern}`)`                         *hop.hint_patterns*
+    Annotate all matched patterns in the current window with key sequences.
 
     Arguments:~
-        {opts}  Hop options.
+        {opts}     Hop options.
+        {pattern}  (optional) The pattern to search for.
+                   If not set, the user is prompted for the pattern to search.
 
 `hop.hint_char1(`{opts}`)`                                          *hop.hint_char1*
     Let the user type a key and immediately hint all of its occurrences.
