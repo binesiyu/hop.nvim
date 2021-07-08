@@ -219,14 +219,19 @@ function M.hint_words_line(opts)
   hint_with(hint.by_word_start_camel_case, get_command_opts(opts or opts_words_line))
 end
 
-function M.hint_patterns(opts)
+function M.hint_patterns(opts, pattern)
   opts = get_command_opts(opts)
 
-  vim.fn.inputsave()
-  local ok, pat = pcall(vim.fn.input, 'Search: ')
-  vim.fn.inputrestore()
-
-  if not ok then return end
+  -- The pattern to search is either retrieved from the (optional) argument
+  -- or directly from user input.
+  if pattern then
+    pat = pattern
+  else
+    vim.fn.inputsave()
+    ok, pat = pcall(vim.fn.input, 'Search: ')
+    vim.fn.inputrestore()
+    if not ok then return end
+  end
 
   if #pat == 0 then
     eprintln('-> empty pattern', opts.teasing)
