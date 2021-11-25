@@ -348,7 +348,8 @@ end
 
 -- Word regex.
 function M.regex_by_word_start()
-  return M.regex_by_searching('\\k\\+')
+  -- return M.regex_by_searching('\\k\\+')
+  return M.regex_by_searching([[\v(\u((\u)+|(\l)+))|(\l+)|(\d+)]])
 end
 
 -- Line regex.

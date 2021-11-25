@@ -279,11 +279,6 @@ function M.hint_words(opts)
   )
 end
 
-local opts_words_line = {line = true}
-function M.hint_words_line(opts)
-  hint_with(hint.by_word_start_camel_case, get_command_opts(opts or opts_words_line))
-end
-
 function M.hint_patterns(opts, pattern)
   opts = override_opts(opts)
 
