@@ -69,6 +69,7 @@ Neovim.
 - [x] Go to any word in the current buffer.
 - [x] Go to any character in the current buffer.
 - [x] Go to any bigrams in the current buffer.
+- [x] Use Hop cross windows with multi-windows support.
 - [x] Make an arbitrary search akin to <kbd>/</kbd> and go to any occurrences.
 - [x] Go to any line.
 - [x] Visual extend mode, which allows you to extend a visual selection by hopping elsewhere in the document.
@@ -162,7 +163,9 @@ you can call it manually after your plugin is installed:
 require'hop'.setup()
 ```
 
-To get a default experience. Feel free to customize later the `setup` invocation (`:h hop.setup`).
+To get a default experience. Feel free to customize later the `setup` invocation (`:h hop.setup`). If you do, then you
+will probably want to ensure the configuration is okay by running `:checkhealth`. Various checks will be performed by
+Hop to ensure everything is all good.
 
 ### Important note about versioning
 
@@ -214,6 +217,12 @@ If you would rather use the Lua API, you can test it via the command prompt:
 :lua require'hop'.hint_words()
 ```
 
+For a more complete user guide and help pages:
+
+```vim
+:help hop
+```
+
 # Keybindings
 
 Hop doesn’t set any keybindings; you will have to define them by yourself.
@@ -228,12 +237,6 @@ vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction 
 vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
 vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
 vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-```
-
-For a more complete user guide and help pages:
-
-```vim
-:help hop
 ```
 
 # Configuration
